@@ -1,0 +1,139 @@
+<div class="card">
+  <div class="card-header">Redaguoti vaiko informaciją</div>
+  <div class="card-body">
+    <div *ngIf="loading && !errorLoading" class="alert alert-info">
+      Kraunami duomenys.... prašome palaukti
+    </div>
+    <div *ngIf="errorLoading" class="alert alert-danger">
+      Nepavyko užkrauti duomenų <br />
+      <a class="btn btn-success mt-2" routerLink="">Grįžti</a>
+    </div>
+    <form *ngIf="!loading" (ngSubmit)="onUpdate()" #form="ngForm">
+      <div class="mb-3">
+        <label class="form-label">Vaiko vardas, pavardė</label>
+        <input
+          type="text"
+          class="form-control"
+          ngModel
+          name="name"
+          required
+          minlength="3"
+          maxlength="15"
+          #inputName="ngModel"
+          [(ngModel)]="childInfo.name"
+        />
+        <span class="help-block" *ngIf="!inputName.valid && inputName.touched"
+          >Negali būti trumpesnis nei 3 ir ilgesnis nei 15 simbolių.</span
+        >
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Vaiko gimimo metai</label>
+        <input
+          type="number"
+          class="form-control"
+          ngModel
+          name="birthYear"
+          required
+          min="2004"
+          maxlength="2022"
+          #inputYear="ngModel"
+          [(ngModel)]="childInfo.birthYear"
+        />
+        <span class="help-block" *ngIf="!inputYear.valid && inputYear.touched"
+          >Negali būti anksčiau nei 2004 m. ir vėliau nei einamieji metai</span
+        >
+      </div>
+      <div class="mb-3">
+        <p>Vaiko lytis:</p>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="gender"
+            id="male"
+            value="male"
+            ngModel
+            [(ngModel)]="childInfo.gender"
+          />
+          <label class="form-check-label" for="male"> Berniukas </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="gender"
+            id="female"
+            value="female"
+            ngModel
+            [(ngModel)]="childInfo.gender"
+          />
+          <label class="form-check-label" for="female"> Mergaitė </label>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Jūsų el. paštas</label>
+        <input
+          type="email"
+          class="form-control"
+          ngModel
+          email
+          name="email"
+          required
+          #inputEmail="ngModel"
+          [(ngModel)]="childInfo.email"
+        />
+        <span class="help-block" *ngIf="!inputEmail.valid && inputEmail.touched"
+          >Turi būti validus el. pašto adresas</span
+        >
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Jūsų telefono nr.</label>
+        <input
+          type="text"
+          class="form-control"
+          ngModel
+          name="phoneNumber"
+          required
+          minlength="10"
+          maxlength="12"
+          placeholder="+370 6XX XXXXX"
+          #inputPhone="ngModel"
+          [(ngModel)]="childInfo.phoneNumber"
+        />
+        <span class="help-block" *ngIf="!inputPhone.valid && inputPhone.touched"
+          >Tel. nr. negali būti trumpesnis nei 10 ir ilgesnis nei 12
+          simbolių.</span
+        >
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Kurioje klasėje yra Jūsų vaikas?</label>
+        <input
+          type="number"
+          class="form-control"
+          ngModel
+          name="grade"
+          required
+          min="5"
+          max="12"
+          #inputClass="ngModel"
+          [(ngModel)]="childInfo.grade"
+        />
+        <span class="help-block" *ngIf="!inputClass.valid && inputClass.touched"
+          >Vaikas turi būti ne mažesnėje nei 5 klasėje</span
+        >
+      </div>
+      <button
+        *ngIf="!errorUpdating"
+        type="submit"
+        class="btn btn-warning"
+        [disabled]="!form.valid"
+      >
+        Redaguoti informaciją
+      </button>
+      <div *ngIf="errorUpdating" class="alert alert-danger">
+        Nepavyko atnaujinti informacijos
+      </div>
+      <a routerLink="" class="btn btn-danger float-end">Atšaukti</a>
+    </form>
+  </div>
+</div>

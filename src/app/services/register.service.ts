@@ -28,4 +28,20 @@ export class RegisterService {
         })
       );
   }
+
+  public getInfo(id: string) {
+    return this.http.get<Register>(this.url + 'children/' + id + '.json').pipe(
+      map((response) => {
+        response.id = id;
+        return response;
+      })
+    );
+  }
+
+  public updateInfo(childInfo: Register) {
+    return this.http.patch(
+      this.url + 'children/' + childInfo.id + '.json',
+      childInfo
+    );
+  }
 }
