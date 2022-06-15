@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { RegisterService } from 'src/app/services/register.service';
 
 @Component({
   selector: 'app-register-new',
@@ -7,12 +8,13 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./register-new.component.css'],
 })
 export class RegisterNewComponent implements OnInit {
-  constructor() {}
+  constructor(private registrationService: RegisterService) {}
 
   ngOnInit(): void {}
 
   public registrationSubmit(form: NgForm) {
-    console.log('Forma išsiųsta');
-    console.log(form.form.value);
+    this.registrationService
+      .addRegistration(form.form.value)
+      .subscribe(() => {});
   }
 }
