@@ -1,4 +1,5 @@
 export class Register {
+  public id: string | null = null;
   constructor(
     public name: string,
     public birthYear: string,

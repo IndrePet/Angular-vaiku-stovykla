@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="card-header">Užsiregistravę vaikai</div>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Vardas, Pavardė</th>
+          <th>Gimimo metai</th>
+          <th>Lytis</th>
+          <th>El. paštas</th>
+          <th>Tel. nr.</th>
+          <th>Klasė</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let child of list">
+          <td>{{ child.name }}</td>
+          <td>{{ child.birthYear }}</td>
+          <td>{{ child.gender }}</td>
+          <td>{{ child.email }}</td>
+          <td>{{ child.phoneNumber }}</td>
+          <td>{{ child.grade }}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
