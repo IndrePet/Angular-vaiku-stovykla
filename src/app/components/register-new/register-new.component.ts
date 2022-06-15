@@ -17,9 +17,8 @@ export class RegisterNewComponent implements OnInit {
   ngOnInit(): void {}
 
   public registrationSubmit(form: NgForm) {
-    this.registrationService
-      .addRegistration(form.form.value)
-      .subscribe(() => {});
-    this.router.navigate(['/']);
+    this.registrationService.addRegistration(form.form.value).subscribe(() => {
+      this.router.navigate(['/']);
+    });
   }
 }
