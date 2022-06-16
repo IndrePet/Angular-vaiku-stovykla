@@ -44,4 +44,8 @@ export class RegisterService {
       childInfo
     );
   }
+
+  public deleteInfo(id: string) {
+    return this.http.delete(this.url + 'children/' + id + '.json');
+  }
 }

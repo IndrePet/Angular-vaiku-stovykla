@@ -9,12 +9,37 @@ import { RegisterService } from 'src/app/services/register.service';
 })
 export class ChildrenListComponent implements OnInit {
   public list: Register[] = [];
+  public showModal: boolean = false;
+  private childId: string = '';
 
   constructor(private registerService: RegisterService) {}
 
-  ngOnInit(): void {
+  private renderList() {
     this.registerService.getRegistrations().subscribe((result) => {
       this.list = result;
+    });
+  }
+  ngOnInit(): void {
+    console.log(this.showModal, '---', this.childId);
+
+    this.renderList();
+  }
+
+  public showConfirmationModal(id: string | null) {
+    this.showModal = true;
+    if (id !== null) {
+      this.childId = id;
+    }
+  }
+
+  public onClose() {
+    this.showModal = false;
+  }
+
+  public onDelete() {
+    this.registerService.deleteInfo(this.childId).subscribe(() => {
+      this.showModal = false;
+      this.renderList();
     });
   }
 }

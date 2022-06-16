@@ -25,9 +25,51 @@
             <a [routerLink]="['/edit', child.id]" class="btn btn-warning"
               >Redaguoti</a
             >
+            <button
+              class="btn btn-danger ms-2"
+              (click)="showConfirmationModal(child.id)"
+            >
+              Ištrinti
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+<div
+  *ngIf="showModal"
+  class="modal"
+  [ngStyle]="{ display: 'block', 'background-color': 'rgba(0, 0, 0, 0.7)' }"
+  tabindex="-1"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">TRINTI VAIKO DUOMENIS</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>Ar tikrai norite ištrinti vaiko duomenis?</p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="onClose()"
+        >
+          Uždaryti
+        </button>
+        <button type="button" class="btn btn-danger" (click)="onDelete()">
+          TRINTI
+        </button>
+      </div>
+    </div>
   </div>
 </div>
