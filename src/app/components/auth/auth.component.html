@@ -5,6 +5,7 @@
         {{ loginMode ? "Prisijungimas" : "Registracija" }}
       </div>
       <div class="card-body">
+        <div class="alert alert-danger" *ngIf="!!error">{{ error }}</div>
         <form (ngSubmit)="onSubmit(form)" #form="ngForm">
           <div class="mb-3">
             <label for="" class="form-label">El. pašto adresas</label>
