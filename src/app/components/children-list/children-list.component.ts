@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Register } from 'src/app/models/register';
+import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { RegisterService } from 'src/app/services/register.service';
 
 @Component({
@@ -12,7 +14,12 @@ export class ChildrenListComponent implements OnInit {
   public showModal: boolean = false;
   private childId: string = '';
 
-  constructor(private registerService: RegisterService) {}
+  public userData: User | null = null;
+
+  constructor(
+    private registerService: RegisterService,
+    private auth: AuthService
+  ) {}
 
   private renderList() {
     this.registerService.getRegistrations().subscribe((result) => {
@@ -20,9 +27,8 @@ export class ChildrenListComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    console.log(this.showModal, '---', this.childId);
-
     this.renderList();
+    this.userData = this.auth.user;
   }
 
   public showConfirmationModal(id: string | null) {
