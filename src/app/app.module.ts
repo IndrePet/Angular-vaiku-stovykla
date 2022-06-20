@@ -8,6 +8,8 @@ import { ChildrenListComponent } from './components/children-list/children-list.
 import { RouterModule, Routes } from '@angular/router';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { FooterComponent } from './components/footer/footer.component';
 const routes: Routes = [
   { path: '', component: ChildrenListComponent },
   { path: 'register', component: RegisterNewComponent },
@@ -21,6 +23,8 @@ const routes: Routes = [
     ChildrenListComponent,
     EditItemComponent,
     AuthComponent,
+    NavigationComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
