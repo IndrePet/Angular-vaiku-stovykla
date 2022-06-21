@@ -7,8 +7,8 @@
   <p *ngIf="!!user" id="user-info" class="alert alert-info me-5">
     <em>{{ user?.email }}</em>
   </p>
-  <a *ngIf="user == null" class="btn btn-success float-end" routerLink="/signup"
-    >Prisijungti/Užsiregistruoti</a
+  <a *ngIf="user != null" class="btn btn-warning" routerLink="/change-password">
+    Pakeisti slaptažodį</a
   >
   <button
     *ngIf="user != null"
@@ -17,4 +17,7 @@
   >
     Atsijungti
   </button>
+  <a *ngIf="user == null" class="btn btn-success float-end" routerLink="/signup"
+    >Prisijungti/Užsiregistruoti</a
+  >
 </div>

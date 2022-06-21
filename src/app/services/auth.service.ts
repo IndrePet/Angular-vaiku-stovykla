@@ -42,6 +42,14 @@ export class AuthService {
       .pipe(tap(this.responseSuccess));
   }
 
+  public changePassword(password: string) {
+    return this.http.post<User>(this.url + ':update?key=' + this.key, {
+      idToken: this.user?.idToken,
+      password,
+      returnSecureToken: true,
+    });
+  }
+
   public isLoggedIn() {
     let data = localStorage.getItem('userData');
     if (data != null) {
