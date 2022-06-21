@@ -15,7 +15,7 @@ export class AuthService {
   public userUpdate = new EventEmitter();
 
   private responseSuccess = (response: User) => {
-    this.user = response;
+    this.user = User.generateUser(response);
     localStorage.setItem('userData', JSON.stringify(this.user));
     this.userUpdate.emit();
   };
@@ -53,7 +53,12 @@ export class AuthService {
   public isLoggedIn() {
     let data = localStorage.getItem('userData');
     if (data != null) {
-      this.user = JSON.parse(data);
+      let t: User = JSON.parse(data);
+      this.user = User.generateUser(t, t.loginTime);
+      if (this.user.isExpired()) {
+        this.user = null;
+        localStorage.removeItem('userData');
+      }
     }
   }
 

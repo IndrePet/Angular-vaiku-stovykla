@@ -1,5 +1,5 @@
 <div class="col-md-12 mb-3">
-  <a class="btn btn-info me-3" routerLink="/register"
+  <a *ngIf="!!user" class="btn btn-info me-3" routerLink="/register"
     >Pridėti naują registraciją</a
   >
   <a class="btn btn-info" routerLink="/">Užsiregistravę vaikai</a>
@@ -7,17 +7,13 @@
   <p *ngIf="!!user" id="user-info" class="alert alert-info me-5">
     <em>{{ user?.email }}</em>
   </p>
-  <a *ngIf="user != null" class="btn btn-warning" routerLink="/change-password">
+  <a *ngIf="!!user" class="btn btn-warning" routerLink="/change-password">
     Pakeisti slaptažodį</a
   >
-  <button
-    *ngIf="user != null"
-    class="btn btn-danger float-end"
-    (click)="logout()"
-  >
+  <button *ngIf="!!user" class="btn btn-danger float-end" (click)="logout()">
     Atsijungti
   </button>
-  <a *ngIf="user == null" class="btn btn-success float-end" routerLink="/signup"
+  <a *ngIf="!user" class="btn btn-success float-end" routerLink="/signup"
     >Prisijungti/Užsiregistruoti</a
   >
 </div>

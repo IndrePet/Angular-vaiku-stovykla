@@ -10,7 +10,7 @@
           <th>El. paštas</th>
           <th>Tel. nr.</th>
           <th>Klasė</th>
-          <th>Veiksmai</th>
+          <th *ngIf="!!userData">Veiksmai</th>
         </tr>
       </thead>
       <tbody>
@@ -21,7 +21,7 @@
           <td>{{ child.email }}</td>
           <td>{{ child.phoneNumber }}</td>
           <td>{{ child.grade }}</td>
-          <td>
+          <td *ngIf="!!userData">
             <a [routerLink]="['/edit', child.id]" class="btn btn-warning"
               >Redaguoti</a
             >

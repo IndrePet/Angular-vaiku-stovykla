@@ -12,12 +12,21 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { FooterComponent } from './components/footer/footer.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
   { path: '', component: ChildrenListComponent },
-  { path: 'register', component: RegisterNewComponent },
-  { path: 'edit/:id', component: EditItemComponent },
+  {
+    path: 'register',
+    component: RegisterNewComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'edit/:id', component: EditItemComponent, canActivate: [AuthGuard] },
   { path: 'signup', component: AuthComponent },
-  { path: 'change-password', component: ChangePasswordComponent },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 @NgModule({
   declarations: [
